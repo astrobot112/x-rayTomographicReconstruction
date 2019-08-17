@@ -1,0 +1,5 @@
+To make Air tools II work with our own image, I changed arguments of the function of testprobs/paralleltomo.m to include the name of the .mat file to be reconstructed and in the fuction definition, I changed the first argument of phantomgallery to the argument that indicates the name of the .mat file to be used.
+In phantomgallery.m, in the function definition, there are many cases depending on what the first argument is. I modified the 'otherwise' case to load the file name given in the first argument.
+I made changes to radon-iradon file as well by cropping the original image and removing the borders of the final image obtained and got the ssim values, none of which are negative.
+From the ssim values, among the interpolations, spline > linear > nearest.
+Among the filters, ram-lak > shepp-logan > cosine > hamming > hann

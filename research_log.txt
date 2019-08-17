@@ -1,0 +1,5 @@
+25/5/18 Friday:
+1. Tried to understand the code of Air Tools II toolbox - paralleltomo function
+27/5/18 Sunday:
+1. Tried to combine radon and paralleltomo function in Air Tools II
+2. 
