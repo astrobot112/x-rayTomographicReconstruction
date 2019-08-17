@@ -1,0 +1,39 @@
+Iterative algorithms solve the equation Ax=b, where A is the projection matrix, x is the image vector, b is the projection vector.
+A is independent of the image and depends on the geometry of the x-ray source and detectors and image size.
+Summary of iterative algorithms:
+
+SIRT Algorithm:
+1. This algorithm starts with an initial image.
+2. For each pixel,
+   i. projections of the initial image due to all rays passing through the pixel are subtracted from the corresponding projections of the original image due to those rays and the average is taken.
+   ii. This average is added to the intensity value of the pixel.
+3. Step 2 is executed until all pixels are done.
+
+SART Algorithm:
+1. An initial image is considered.
+2. For each pixel,
+   i. projections of the initial image due to rays passing through the pixel and belonging to a particular angle are subtracted from the corresponding projections of the original image due to those rays and the average is taken.
+   ii. This average is added to the intensity value of the pixel.
+   iii. Now, rays belonging to another angle are considered and steps i and ii are repeated until all angles are covered.
+3. Step 2 is executed until all pixels are done.
+
+ART Algorithm:
+1. An initial image is considered.
+2. For each ray,
+   i. Projection vector of the initial image due to the ray is obtained and is subtracted from the corresponding projection vector of the original image.
+   ii. The difference vector obtained is then back projected and the new image obtained is added to the initial image.
+3. Step 2 is continued until all rays are covered.
+
+Note: ART Algorithm computes change for the whole image and back projects it, whereas SIRT and SART compute and make changes pixelwise but not the whole image.
+A point object traces out a sinusoid in R-theta space and hence it is called sinogram.
+
+Air Tools II implements 3D reconstruction by utilising ASTRA's 3D GPU.
+In all cases, time taken - ART > SART > SIRT and
+    okra - image quality - SART > SIRT > ART
+
+References:
+1. Methods of least squares and SIRT in Reconstruction by A.V.Lakshminarayanan and A.Lent
+2. Visualization and SART for 3D reconstruction of solder balls by Masatoshi Chang-Ogimoto, Chiou-Shann Fuh, Hung-Yi chen, Cheng-Shih Wong and Tsun-An Hsieh
+3. Chapter 7 - Algebraic reconstruction algorithms, Principles of Computerized Tomographic Imaging by Avinash Kak and Malcolm Slaney
+4. The implementation of iterative reconstruction algorithms in MATLAB by Van Hemelryck Tessa, Wuyts Sarah, Gossens Maggie, Batenburg Kees Joost and Sijbers Jan
+5. AIR Tools II: algebraic iterative reconstruction methods, improved implementation by Per Christian Hansen and Jakob Sauer Jørgensen
